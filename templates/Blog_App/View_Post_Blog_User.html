@@ -1,0 +1,60 @@
+{% extends 'Blog_App/base.html' %}
+{% load static %}
+{% block parentblock %}
+<style media="screen">
+  .container{
+    margin-top:5%;
+    background:rgba(185, 181, 181,.4);
+    height:150px;
+  }
+
+  img{
+    margin-left:2%;
+    margin-top:2%;
+  }
+  #ab{
+    margin-top:-11%;
+    margin-left:45%;
+  }
+  #b{
+    margin-left: 18%;
+    margin-top:1%;
+  }
+  #c{
+    margin-left: 94%;
+    margin-top:-8%;
+  }
+  #d{
+    margin-top:5%;
+    margin-left: 40%;
+  }
+  input{
+    margin-left:90%;
+    margin-top:-8%;
+  }
+</style>
+<body>
+<h1>Welcome To View Blogs</h1>
+{% if Blog %}
+  {% for blog in Blog %}
+    <div class="container">
+
+      <form  method="post">
+
+
+        <p><a href="/Detail_View/{{blog.id}}"><img src="{{blog.Pic.url}}" height="100px" width="150px" alt="Blog Image"></p>
+        <p id="ab"><a href="/Detail_View/{{blog.id}}">{{blog.Title}}</a></p>
+        <p id="b"><a href="/Detail_View/{{blog.id}}">{{blog.Description}}</p>
+        <p id="c">By {{blog.Author}}</p>
+        <p id="d">{{blog.Date_time}}</p>
+        <input type="submit" class="btn btn-danger" name="" value="Delete">
+      </form>
+        </div>
+      {%endfor%}
+
+    {%else%}
+    <h2>No Data Found</h2>
+    {%endif%}
+
+  </body>
+{%endblock%}

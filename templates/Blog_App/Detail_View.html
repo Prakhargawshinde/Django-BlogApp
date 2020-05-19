@@ -1,0 +1,56 @@
+{% extends 'Blog_App/base.html' %}
+{% load static%}
+{% block parentblock %}
+<style media="screen">
+  #ab{
+    margin-top:6%;
+    text-align: center;
+    color: red;
+  }
+  h2{
+    text-align:right;
+    color:green;
+    margin-right:3%;
+  }
+  img{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width:300px;
+    height:200px;
+  }
+  h4{
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    color: blue;
+    width: 800px;
+    text-align:center;
+  }
+  h5{
+    text-align: center;
+    margin-top:3%;
+    color: orange;
+  }
+  input{
+    margin-left:47%;
+  }
+</style>
+
+{% if Blog %}
+<h1 id="ab">TITLE : {{Blog.Title}}</h1>
+<h2>BY : {{Blog.Author}}</h2>
+<img src="{{Blog.Pic.url}}" height="100px" width="150px" alt="Blog Image">
+<h4>DESCRIPTION : {{Blog.Description}}</h4>
+<h5>POST ON : {{Blog.Date_time}}</h5>
+{%endif%}
+
+{% ifequal request.user.username Blog.Author %}
+<form method="post">
+  {%csrf_token%}
+<input class="btn btn-danger" type="submit" name="" value="Delete">
+</form>
+  {%endifequal%}
+
+{%endblock%}
